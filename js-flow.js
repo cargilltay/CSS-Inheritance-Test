@@ -23,6 +23,20 @@ jQuery(function($) {
 		return tBox;
 	}
 
+	var resetTestBoxes = function(selector){
+
+		$(selector).find('.test-box').each(function() {
+			if (i % 2 != 0) {
+				$(this).css('background-color','#dff0d8');
+			}
+			else{
+				$(this).css('background-color','#d9edf7');
+			}
+	
+		})
+		$(selector).find('.main-parent').css('background-color', '#f2dede')
+	}
+
 	var createTestBoxes = function(parent) {
 		var width = 10;
 		var initialWidth;
