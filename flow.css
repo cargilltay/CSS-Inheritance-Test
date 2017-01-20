@@ -34,3 +34,7 @@ body {
 #left-container, #right-container {
 	border: black solid 2px;
 }
+
+#run-buttons {
+	margin-top: 370px;
+}

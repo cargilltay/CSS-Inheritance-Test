@@ -4,8 +4,17 @@ jQuery(function($) {
 
 	var init = function() {
 		setupTestDom();
-		initJSFlow();
-		initCSSFlow();
+		setupHandlers();
+	}
+
+	var setupHandlers = function() {
+		$('#init-js').on('click', function() {
+			initJSFlow();
+		})
+
+		$('#init-css').on('click', function() {
+			initCSSFlow();
+		})
 	}
 
 	var appendTestBox = function(selector) {
@@ -22,6 +31,7 @@ jQuery(function($) {
 		var child;
 
 		parent.addClass('main-parent');
+		parent.addClass('test-color');
 		parent.css('width', width + '%');
 		initialWidth = parent.width();
 		parent.css('z-index', zIndex);
@@ -32,11 +42,11 @@ jQuery(function($) {
 			zIndex -= 1;
 
 			child = appendTestBox(parent)
-			
-			if(i % 2 != 0){
+
+			if (i % 2 != 0) {
 				child.addClass('odd-test');
 			}
-			child.css('width', initialWidth * (1 + (width/100)));
+			child.css('width', initialWidth * (1 + (width / 100)));
 			child.css('z-index', zIndex);
 			child.height(child.width());
 			parent = child;
@@ -56,15 +66,14 @@ jQuery(function($) {
 
 	var initCSSFlow = function() {
 		var lastContainer = $('.main-parent');
-		var reverseRight = $('#right-container .test-box').get().reverse();
+		var reverseRight = $('#right-container .test-box').get();
+		reverseRight.shift();
 
-		lastContainer.addClass('test-color');
 
 		$(reverseRight).each(function() {
-			//$(this).css('')
+			$(this).css('background-color', 'inherit')
 		});
 
-		console.log('test')
 	}
 
 	init();
