@@ -1,18 +1,70 @@
 jQuery(function($) {
 
-	var MAX_ELEMENTS = 25;
+	var MAX_ELEMENTS = 20;
 
 	var init = function() {
 		setupTestDom();
+		initJSFlow();
+		initCSSFlow();
+	}
+
+	var appendTestBox = function(selector) {
+		var tBox = $('<div class="test-box"></div>');
+		tBox.appendTo(selector);
+		return tBox;
+	}
+
+	var createTestBoxes = function(parent) {
+		var width = 10;
+		var initialWidth;
+		var zIndex = 20;
+		var parent;
+		var child;
+
+		parent.addClass('main-parent');
+		parent.css('width', width + '%');
+		initialWidth = parent.width();
+		parent.css('z-index', zIndex);
+		parent.height(parent.width());
+
+		for (var i = 0; i < MAX_ELEMENTS - 1; i++) {
+			width += 10;
+			zIndex -= 1;
+
+			child = appendTestBox(parent)
+			
+			if(i % 2 != 0){
+				child.addClass('odd-test');
+			}
+			child.css('width', initialWidth * (1 + (width/100)));
+			child.css('z-index', zIndex);
+			child.height(child.width());
+			parent = child;
+		}
 	}
 
 	var setupTestDom = function() {
-		for (var i = 0; i < MAX_ELEMENTS - 1; i++) {
-			$('<div class="test-box">' +
+		var rightInitial = appendTestBox($('#right-container'));
+		var leftInitial = appendTestBox($('#left-container'));
+		createTestBoxes(rightInitial);
+		createTestBoxes(leftInitial);
+	}
 
+	var initJSFlow = function() {
 
-				'</div>').appendTo($('#left-container, #right-container'));
-		}
+	}
+
+	var initCSSFlow = function() {
+		var lastContainer = $('.main-parent');
+		var reverseRight = $('#right-container .test-box').get().reverse();
+
+		lastContainer.addClass('test-color');
+
+		$(reverseRight).each(function() {
+			//$(this).css('')
+		});
+
+		console.log('test')
 	}
 
 	init();

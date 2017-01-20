@@ -4,10 +4,31 @@ body {
 
 .test-box {
 	height: 30px;
-	border-top: 1px solid #dddddd;
+	margin-top:5px;
+	margin-left:5px;
+	background-color: #d9edf7;
+	position: absolute;
+	border:black solid 1px;
 }
-.test-box:nth-of-type(odd){
-	background-color: #f9f9f9;
+
+.odd-test {
+	background-color: #dff0d8;
+}
+
+.test-color {
+	background-color: #f2dede;
+}
+
+#test-color-box {
+	width: 50px;
+	height: 50px;
+	border: black solid 2px;
+}
+
+#test-color-container{
+	position: absolute;
+	margin-top: 150px;
+	margin-left: 150px;
 }
 
 #left-container, #right-container {
